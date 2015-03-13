@@ -40,6 +40,11 @@ you can say
 	for-in x y
 		print x
 
+## Lisp macros
+I know that "macros" are meant to be like the holy grail of programming expressiveness power that turns every Lisp practitioner into a sanctified zealot or some such. However, I can't build them until I learn them. I'll probably write the Pyylisp macro system as soon as it seems like the most urgent/immediately-useful thing.
+
+Note that half the Python I know is from searching for ways to avoid repeating myself in code. I expect that this is the force that will lead me to eventual understanding of Lisp macros.
+
 # Known Bugs
 None of this is implemented yet. I plan to have something useful ready by May, turning this into my final project for Python class.
 
