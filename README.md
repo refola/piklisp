@@ -1,7 +1,7 @@
 # pyylisp.py
 Make Python-compatible programs via a Lisp dialect. Pyylisp is to have functions for everything you'd want to do in Python, combined with the power of everything you'd expect from a Lisp.
 
-This is the successor to the stalled [Pyylisp](https://github.com/refola/pyylisp) project I was writing in Go. Instead of using Go to make a different way of displaying Lisp, I'm using Python to make a Lisp interpreter that's integrated with Python. It's the simplest way I could think of to add "sufficiently powerful" metaprogramming to Python, while making it still look mostly like Python.
+This is the successor to the stalled [Pyylisp](https://github.com/refola/pyylisp) project I was writing in Go. Instead of using Go to make a different way of displaying Lisp, I'm using Python to make a Lisp interpreter that's integrated with Python. It's the simplest way I could think of to add "sufficiently powerful" metaprogramming to Python, while making it still look kinda like Python.
 
 # Language Spec
 Pyylisp tries to match Python as much as possible, so the spec is defined in terms of what's different. Everything that doesn't work like in Python and isn't specified in the spec is a bug.
@@ -24,10 +24,10 @@ If a line is not followed by a more-indented line but it contains multiple thing
 You can still use parentheses for grouping; this is recommended for things that look better on one line and this is necessary for making singleton lists.
 
 ## Functions
-If a Pyylisp list appears in a context where it is not an argument to something else, then it is treated as a function call. The first item in the list is the name of the function and everything else is an argument to the function.
+Because doing things is the most common thing to do in a program, the default interpretation of a list is a function followed by its arguments. To use a list as data instead, precede it with a single quote like `'(this is a quoted list)`. Macros should be able to do fancy stuff to change this or something.
 
 ## Object-oriented stuff
-There is no object-oriented programming support, and likely never will be beyond what's required to minimally support fluent access to Python stuff. In the meantime, meditate on the difference between `function majorArg minorArg` and `majorArg.function minorArg`.
+I think that something like `. object field subfield` is the "right" way to retrieve what would be referred to as `object.field.subfield` and `. object method argument` is the way to do `object.method(argument)`. An object is just a templated dictionary with syntactic sugar, so it's not a big deal anyway.
 
 ## Python keywords and syntax
 Everything you can do with Python keywords and syntax is available in Pyylisp. However, all that stuff has been turned into functions. For example, instead of
