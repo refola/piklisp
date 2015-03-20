@@ -1,0 +1,18 @@
+# defun.pyl
+# Macro to define a function, Pyylisp style.
+
+# Magic language stuff needed:
+# * Define and bind values to symbols
+# * Create variable scopes/namespaces
+# * Take arguments as raw expressions without quoting them in the function/macro call
+
+defmacro defun # This is defining a macro named defun, which is in tern used to define functions.
+	name args actions # This is the list of arguments used by defun.
+	if (= 'symbol (type name)) # Make sure that name refers to a symbol, and not, say, a list of things.
+		do
+			# Add the function's symbol to the appropriate variable scope symbole dictionary
+			# Macro (function?) call for making a new sub-scope for stuff within the function, binding argument names as appropriate
+			# Insert the actual function here.
+		do
+			# Error condition -- should this just halt the whole program?
+
