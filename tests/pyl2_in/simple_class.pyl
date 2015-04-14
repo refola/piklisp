@@ -1,0 +1,34 @@
+# simple_class.py[l]
+# Define and use a simple class.
+
+# Calling the class macro in Pyylisp should look a lot like defining a
+# class in Python, but even simpler. For example, you don't need to
+# say "def" or "self" ever single method, since the anaphoric class
+# definition macro already does that. Also, for the common case of the
+# constructor simply setting self._var = var for every single
+# variable, you can use the magic Pyylisp --init-- instead of
+# __init__.
+
+class square
+	--init-- length
+	area
+		** self._length 2
+
+# Unparenthesized version
+= mysquare square 5
+= area mysquare.area
+print area
+
+# Shorter version
+= mysquare square 5
+print (mysquare.area)
+
+# You will almost certainly never be able to do this one-liner in
+# Pyylisp. The dots are not syntax, but rather part of the symbols
+# made by the "=" macro working with the "class" macro.
+#print ((square 5).area)
+
+# But you /might/ be able to do this, if the class macro is made to
+# return a function that expects a symbol representing the stuff after
+# the dot.
+#print ((square 5) area)
