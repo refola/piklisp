@@ -1,0 +1,42 @@
+Here are some questions about how Pyylisp should work, hopefully followed by useful ideas.
+
+
+
+Should indentation-based syntax extend to letting code see the way grouping was done? If not, then how can the "if" macro get rid of its parentheses?
+
+With line-end detection, the "if" macro could do the right thing when written like this,
+
+	if < x y
+		true-case
+		false-case
+
+which looks better than either of
+
+	if (< x y)
+		true-case
+		false-case
+
+or
+
+	if
+		< x y
+		true-case
+		false-case
+
+It gets rid of a set of otherwise-required parentheses, but it requires adding grouping semantics beyond Lisp's open-group, close-group. This looks like it would hurt homoiconicity or require great complexity to salvage homoiconicity from more-complicated syntax.
+
+The alternative to adding macro magic to get rid of parentheses in "if" is for "if" to use "then" and "else" symbols to separate condition from true-case from false-case, with the "then" and "else" acting as "do".
+
+I don't want to risk homoiconicity and "if < x y then true-case else false-case" can even be a one-liner with the right macro magic....
+
+But mandatory "then" and "else" keywords would get annoying....
+
+Instead of "then", if could use a ":" symbol to represent ending the condition, using either "else" or another ":" to change to the false condition. This would look like "if condition : true-case : false-case".
+
+Note that keyword-based separators in calls to "if" are compatible with nested control structures because the nested structures act as lists that don't begin with the if-specific keyword. Such recursive anaphore!
+
+
+
+
+What's the next question?
+
