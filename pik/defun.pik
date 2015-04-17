@@ -1,5 +1,5 @@
-# defun.pyl
-# Macro to define a function, Pyylisp style.
+# defun.pik
+# Macro to define a function, Piklisp style.
 
 # Magic language stuff needed:
 # * Define and bind values to symbols

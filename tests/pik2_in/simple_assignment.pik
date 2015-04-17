@@ -1,5 +1,5 @@
-# simple_assignment.py[l]
-# Simple variable assignment test for Pyylisp.
+# simple_assignment.pik
+# Simple variable assignment test for Piklisp.
 
 # This sets the variable/symbol "foo" to the value 5 and then prints
 # foo.

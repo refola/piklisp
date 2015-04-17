@@ -1,8 +1,8 @@
-# simple_function.py[l]
-# Simple function test for Pyylisp.
+# simple_function.pik
+# Simple function test for Piklisp.
 
 # All this does is define and run a simple function, something
-# essential to any programming language. Note that the Pyylisp
+# essential to any programming language. Note that the Piklisp
 # function skips the parentheses of the Python function, and also
 # lacks the return keyword.
 

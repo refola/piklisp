@@ -1,10 +1,9 @@
-# comments.py[l]
-# Test comment parsing and preservation of Pyylisp.
+# comments.pik
+# Test comment parsing and docstring preservation of Piklisp.
 
-# Pyylisp shouldn't change this file at all. Note that Pyylisp uses
-# single quotes to quote code for Lisp-y stuff, so you can't do things
-# like triple-single-quote comments or single-quoted strings in
-# Pyylisp.
+# Piklisp should leave only docstring comments. These consist of
+# triple-double-quoted strings, but that might change to just regular
+# double-quoted strings.
 
 """This is a single-line triple-double-quote comment."""
 

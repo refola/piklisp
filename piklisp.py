@@ -1,13 +1,13 @@
 #!/usr/bin/python3
 '''
-pyylisp.py
+piklisp.py
 Author: Mark Haferkamp
 Last date modified: 2015-04-08
 Interpret a Pythony dialect of Lisp.
 
-Pyylisp is a scripting language that uses a parentheses-light Lisp syntax and macro system to run Python functions.
+Piklisp is a scripting language that uses a parentheses-light Lisp syntax and macro system to run Python functions.
 
-It's essentially Pythonic syntax and features combined with Lisp semantics and listiness. As Clojure is to Java, Pyylisp tries to be to Python.
+It's essentially Pythonic syntax and features combined with Lisp semantics and listiness. As Clojure is to Java, Piklisp tries to be to Python.
 '''
 
 import sys
@@ -33,7 +33,7 @@ def usage():
 	'''Show how to use the program.'''
 	print("Usage: %s pyl-file-1 [pyl-file-2 [...]]" % sys.argv[0])
 	print()
-	print("Converts given .pyl Pyylisp files into .py Python files.")
+	print("Converts given .pyl Piklisp files into .py Python files.")
 	print("You probably want to run this as '%s *.pyl'." % sys.argv[0])
 
 def main():
@@ -44,7 +44,7 @@ def main():
 		return
 	for arg in args:
 		if arg[-4:] != '.pyl':
-			print("Invalid Pyylisp file: %s." % arg)
+			print("Invalid Piklisp file: %s." % arg)
 			usage()
 			return
 	for arg in args:
