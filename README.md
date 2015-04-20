@@ -1,7 +1,12 @@
 # piklisp.py
-Make Python-compatible programs via a Lisp dialect. Piklisp is to have functions for everything you'd want to do in Python, combined with the power of everything you'd expect from a Lisp.
+Make Python-compatible programs via a Lisp dialect. Piklisp is a **P**ython**ic Lisp**.
 
-This is the successor to the stalled [Piklisp](https://github.com/refola/piklisp) project I was writing in Go. Instead of using Go to make a different way of displaying Lisp, I'm using Python to make a Lisp interpreter that's integrated with Python. It's the simplest way I could think of to add "sufficiently powerful" metaprogramming to Python, while making it still look kinda like Python.
+Piklisp is to have functions for everything you'd want to do in Python, combined with the power of everything you'd expect from a Lisp.
+
+# History
+This is the successor to the stalled [Pyylisp](https://github.com/refola/pyylisp) project I was writing in Go. Instead of using Go to make a different way of displaying Lisp, I'm using Python to make a Lisp interpreter that's integrated with Python. It's the simplest way I could think of to add "sufficiently powerful" metaprogramming to Python, while making it still look kinda like Python.
+
+Piklisp.py used to be called Pyylisp.py, but "Pie-ee-lisp" kept feeling awkward to pronounce. Also, the correct term for "in a properly Python-like way" is "Pythonic", not "Pythony". Finally, I don't like the phonetic ambiguity of the English letter `c`, so I changed it to an unambiguous `k`.
 
 # More info:
 See the other .md files....
