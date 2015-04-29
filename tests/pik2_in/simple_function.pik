@@ -6,7 +6,7 @@
 # function skips the parentheses of the Python function, and also
 # lacks the return keyword.
 
-def square number
+def square number :
 	** number 2
 
 # Note that parentheses are required for the inner function call,

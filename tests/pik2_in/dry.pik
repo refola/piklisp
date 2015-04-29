@@ -1,0 +1,86 @@
+'''
+dry.pik
+Piklisp version of module I used in Python class to avoid repeating myself.
+'''
+
+# Commented out because it doesn't work on Windows. :-(
+#import readline # Make (input) provide fancy line editing and history.
+import sys
+
+
+### Utility functions
+
+## Here are some functions for evaluating stuff and showing the expression being evaluated. After conversion to Piklisp it works like a Lisp macro so it should work regardless of where it's defined relative to the variable scope it's used in.
+# Throw away any return value(s).
+= null fn * _ :
+	None
+# Show and EVAL a string. Yay macros!
+= seval macro * x :
+	` print (% "%20s == %r" ',@x ,@x)
+# Run seval on everything. Yay list comprehensions!
+= sevals macro * things :
+	` null (do-for-in (seval thing) thing things)
+
+# Pause until the user presses enter, allowing the program to do the following action.
+= pause fn action = "continue" :
+	input (% "Press [Enter] to %s. " action)
+
+
+### Get arguments of the correct type, prompting the user as necessary.
+
+# Attempt conversion of value to Type.
+= try-convert fn value Type :
+	try
+		Type value
+		except ValueError
+		None
+
+# Get input by type, looping until satisfied.
+= get-by-type fn name Type :
+	= ret None
+	while is ret None
+		= ret try-convert (input (% "Please enter %s. " name)) Type
+		if is ret None :
+			print (% "Error. I was expecting input of type %s." Type)
+	ret
+
+# Get arguments interactively if full args list not given. Descriptions are 2-tuples containing the text to show the user and the type of thing you want. Use get-by-type to get a single argument.
+= get-args fn given * descriptions:
+	= ret []
+	# First try seeing if the arguments work.
+	if == (len given) (len descriptions) :
+		= types map ((fn x : x 1) descriptions)
+		= val-type-pairs zip given types
+		= ret tuple (do-for-in (try-convert * x) x val-type-pairs)
+		if not in None ret : # If all conversions successful
+			return ret # An explicit return is required because it's not the end of the function.
+	# If not, get fresh input.
+	return (do-for-in (get-by-type * desc) desc descriptions)
+
+
+### Run functions with a minimal menu list.
+
+# Tell the user what functions are available.
+= defaultusage fn keys :
+	print (% "Usage: python3 %s [fn] [args]" (sys.argv 0))
+	print "Runs function fn, optionally with given arguments."
+	print (% "Functions are as follows: %s" keys)
+
+# Call the appropriate function, prompting the user if one isn't specified.
+= runThings fn fmap *_ args = (sys.argv 1 ::) fnPrompt = "function name" running = (fn name : % "Running function %s." name) usage = defaultusage :
+	# Report if the given function could be ran.
+	= try-run fn f args :
+		if in f fmap :
+			print (running f)
+			(fmap fn) @args
+			True
+		else:
+			print (% "Invalid %s: '%s'." fnPrompt fn)
+			False
+	# Keys for usage function's reference
+	= keys list fmap.keys
+	keys.sort
+	# Until function invoked, prompt for function name
+	while or (< (len args 1)) (not try-run (args 0) (args 1 ::)) :
+		usage keys
+		= args [] (get-by-type fnPrompt str)
