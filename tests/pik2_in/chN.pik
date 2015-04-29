@@ -13,34 +13,22 @@ import-as (symbol (% "dry" chapter)) dry
 
 import sys
 
-# Functions for different problems, named via Lojban number words.
-# TODO: After making Pyylisp, rewrite the current function skeletons stuff as a macro, something like this:
-# (dry.add-fn fn-name "function description" arg1 str arg2 int)
+# Add functions for different problems, using macro magic.
 
-# 1
-= pa fn * args :
-	print "This sentence should describe the problem."
-	= args dry.getArgs args ("arg1" str) ("arg2", int)
+dry.add-fn "1" "This sentence should describe the problem." "arg1" str "arg2" int :
+	# function body
 
-# 3
-= ci fn * args :
-	print "stuff"
-	= args dry.getArgs args ("arg1" str)
+dry.add-fn "3" "stuff" "arg1" str :
+	# function body
 
-# 5
-= mu fn * args :
-	print "stuff"
-	= args dry.getArgs args ("arg1" str)
+dry.add-fn "5" "stuff" "arg1" str :
+	# function body
 
-# 7
-= ze fn * args :
-	print "stuff"
-	= args dry.getArgs args ("arg1" str)
+dry.add-fn "7" "stuff" "arg1" str :
+	# function body
 
-# 9
-= so fn * args :
-	print "stuff"
-	= args dry.getArgs args ("arg1" str)
+dry.add-fn "9" "stuff" "arg1" str :
+	# function body
 
 # Homework-specific usage function.
 = usage fn keys :
@@ -49,8 +37,7 @@ import sys
 	print (% "Implemented projects are as follows: %s" keys)
 
 = main :
-	= fmap {} "1" pa "3" ci "5" mu "7" ze "9" so
 	= running fn name : (% "Running code for problem number %s." name)
-	dry.runThings fmap fnPrompt = "problem number" running = running usage = usage
+	dry.run-fns fn-prompt = "problem number" running = running usage = usage
 
 main

@@ -58,29 +58,53 @@ import sys
 	return (do-for-in (get-by-type * desc) desc descriptions)
 
 
+### Add functions to the function map, automating the boilerplate description-printing and arg-getting.
+
+= fns {}
+= add-fn macro name description * args :
+	= arg-descriptions []
+	= function []
+	for-in i range (/ (len args) 2) :
+		if == (* i 2) symbol(":") :
+			function ::: (args (+ (* i 2) 1) ::)
+			break
+			else:
+			arg-descriptions -0 :: (args (* i 2) (+ (* i 2) 1))
+	` ,fns name fn * args :
+		print ,description
+		= args ,get-args @arg-descriptions
+		@function
+
+
 ### Run functions with a minimal menu list.
 
 # Tell the user what functions are available.
-= defaultusage fn keys :
+= default-usage fn keys :
 	print (% "Usage: python3 %s [fn] [args]" (sys.argv 0))
 	print "Runs function fn, optionally with given arguments."
 	print (% "Functions are as follows: %s" keys)
 
 # Call the appropriate function, prompting the user if one isn't specified.
-= runThings fn fmap *_ args = (sys.argv 1 ::) fnPrompt = "function name" running = (fn name : % "Running function %s." name) usage = defaultusage :
+= run-fns fn *_ args = (sys.argv 1 ::) fn-prompt = "function name" running = (fn name : % "Running function %s." name) usage = default-usage :
+	# Check if functions have been made.
+	if == (len fns) 0 :
+		print "No functions in function map. Call, e.g.,"
+		print "'dry.add-fn \"fn description\" my-fn \"arg-name\" arg-type'"
+		print "from whatever ran \"run-fns\" and try again."
+		return
 	# Report if the given function could be ran.
 	= try-run fn f args :
-		if in f fmap :
+		if in f fns :
 			print (running f)
-			(fmap fn) @args
+			(fns fn) @args
 			True
-		else:
-			print (% "Invalid %s: '%s'." fnPrompt fn)
+			else:
+			print (% "Invalid %s: '%s'." fn-prompt fn)
 			False
 	# Keys for usage function's reference
-	= keys list fmap.keys
+	= keys list fns.keys
 	keys.sort
 	# Until function invoked, prompt for function name
 	while or (< (len args 1)) (not try-run (args 0) (args 1 ::)) :
 		usage keys
-		= args [] (get-by-type fnPrompt str)
+		= args [] (get-by-type fn-prompt str)
