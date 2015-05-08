@@ -2,7 +2,7 @@ Here are some questions about how Piklisp should work, hopefully followed by use
 
 
 
-Should indentation-based syntax extend to letting code see the way grouping was done? If not, then how can the "if" macro get rid of its parentheses?
+Should indentation-based syntax extend to letting code see the way grouping was done? If not, then how can the "if" macro look right?
 
 With line-end detection, the "if" macro could do the right thing when written like this,
 
@@ -35,6 +35,25 @@ Instead of "then", if could use a ":" symbol to represent ending the condition, 
 
 Note that keyword-based separators in calls to "if" are compatible with nested control structures because the nested structures act as lists that don't begin with the if-specific keyword. Such recursive anaphore!
 
+Instead of the above, "if" can be an anaphoric macro that sets a hidden/system variable called something like "--do-else--", which can then be read by an "else" statement. Then we can have "if-else" which acts like "if" in most Lisps, while making Piklisp's "if" look like that of other programming languages. Using " :" as a semantic sugar for "the condition was a one-liner and I don't want to say 'then'", this allows conditional statement forms like this.
+
+if condition1 :
+	c1-true
+else if condition2 :
+	c2-true
+else
+	both-false
+
+if-else condition true-case false-case
+
+if
+	stuff-that
+	ends-with
+	true-or-false
+then
+	true-case
+else
+	false-case
 
 
 
