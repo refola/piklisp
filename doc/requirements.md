@@ -5,6 +5,7 @@ This is what Piklisp should do and have ways of doing.
 
 # Metarequirements
 This lists the general goals of Piklisp, the things that the requirements should support. These are mostly pretty general, so they are elaborated upon in the other sections.
+
 1. It must be a Lisp. I.e., it must have syntactic macro support and be homoiconic. This is essential for the elimination and modularization of the "boilerplate" code seen in other languages.
 2. It should be as simple and easy to use as the task it's used for. The language should be usable and general purpose.
 3. It should look more like Python than Lisp. This is because all those parentheses are annoying enough to keep most people from using Lisps, while Python looks clean and tidy.
