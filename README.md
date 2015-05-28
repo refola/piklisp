@@ -1,4 +1,7 @@
 # piklisp
+NOTE: To avoid wasting time designing and implementing a poor copy of something that may already exist, I am suspending this project until after I find the time to learn [Arc](http://www.arclanguage.org), which I now realize likely improves at least as much on the "too many parentheses" state of Lisp as I could dream of doing on my own. [Here](http://stackoverflow.com/a/11579825/619001) is the Stack Overflow answer that brought me to this realization. Check this space for an implementation of [SRFI#49](http://srfi.schemers.org/srfi-49/srfi-49.html) in Arc.
+-
+
 Make Python-style programs via a Lisp dialect. Piklisp is a **P**ython**ic Lisp**. Piklisp is to have the appearance Python, combined with the power of everything you'd expect from a Lisp.
 
 This is the design documentation. Implementation is not happening at this time.
